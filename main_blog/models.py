@@ -54,3 +54,8 @@ class BlogPageGalleryImage(Orderable):
         FieldPanel('image'),
         FieldPanel('caption')
     ]
+
+class MainPage(Page):
+    
+    
+    pass
