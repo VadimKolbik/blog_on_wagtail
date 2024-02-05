@@ -1,0 +1,48 @@
+{% if header.bg_image %}
+<div style="height: 300px; background-image: url('{{ header.bg_image.url }}');
+    background-repeat:  no-repeat; background-size: cover; background-position: center;">
+{% else %}
+<div style="height: 300px; background-image: url('static/images/bg_image.jpeg');
+    background-repeat:  no-repeat; background-size: cover; background-position: center;">
+{% endif %}
+    <div class="nav-div">
+        <ul class="nav justify-content-end" style="color: white; text-shadow: 1px 1px 1px #000;">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Обо мне</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Клуб</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Коучинг</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Отзывы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Контакты</a>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-primary" style="border-radius: 20px;" type="submit">Консультация</button>
+            </li>
+        </ul>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <div style="color: white; text-shadow: 1px 1px 1px #000;">
+            <h5><b>{{ header.speciality }}</b></h5>
+            <h1><b>{{ header.name }}</b></h1>
+            <div>
+                {{ header.slogan }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="card text-bg-dark">
+    <img src="static/images/bg_image.jpeg" class="card-img" alt="image">
+    <div class="card-img-overlay">
+      <h5 class="card-title">{{ header.speciality }}</h5>
+      <h4 class="card-text">{{ header.name }}</h4>
+      <p class="card-text">{{ header.slogan }}</p>
+    </div>
+  </div> -->

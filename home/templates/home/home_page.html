@@ -1,4 +1,5 @@
 {% load static %}
+{% load wagtailcore_tags custom_tags wagtailimages_tags %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -17,43 +18,10 @@
 </head>
 
 <body>
-    <div
-        style="height: 300px; background-image: url('static/images/bg_image.jpeg'); background-repeat: no-repeat; background-size: contain;">
-        <div class="nav-div">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black;" href="#">Обо мне</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black;" href="#">Клуб</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black;" href="#">Коучинг</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black;" href="#">Отзывы</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: black;" href="#">Контакты</a>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-primary" style="border-radius: 20px;" type="submit">Консультация</button>
-                </li>
-            </ul>
-        </div>
-        <div style="display: flex;">
-            <div style="flex-grow: 1;">
-            </div>
-            <div>
-                <h5>КПТ психолог, консультант</h5>
-                <h1>Колбик Татьяна</h1>
-                <div>
-                    Создайте жизнь своей мечты, финансовую свободу, гармоничные отношения
-                </div>
-            </div>
-        </div>
-    </div>
+    {% header_tag %}
     <div>
+        <h3>Привет</h3>
+        <h2>С чем я могу помочь?</h2>
     </div>
     <div style="display: flex; flex-wrap: wrap; justify-content: center;">
         <div class="card" style="width: 18rem; border-radius: 20px; margin: 15px;">
@@ -324,11 +292,11 @@
             фото туттттт
         </div>
     </div>
-    <div>
-        <img src="static/images/footer/inst.png" alt="image" height="40">
+    {% footer_tag %}
+    <!-- <div>
         <img src="static/images/footer/VK-Logo-2016.png" alt="image" height="40">
         <img src="static/images/footer/tg.png" alt="image" height="40">
-    </div>
+    </div> -->
 
 </body>
 

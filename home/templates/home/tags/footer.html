@@ -1,0 +1,27 @@
+{% load wagtailimages_tags %}
+
+<div style="display: flex; justify-content: center;">
+    {% for item in footer.footer_images.all %}
+    <!-- <img src="static/images/footer/inst.png" alt="image" height="40"> -->
+    <a href="{{ item.url_image }}" style="margin: 10px 5px 0px 5px;">{% image item.image fill-55x55 %}</a>
+    {% endfor %}
+</div>
+<div>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link" style="color: black;" href="#">Обо мне</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="color: black;" href="#">Клуб</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="color: black;" href="#">Коучинг</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="color: black;" href="#">Отзывы</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" style="color: black;" href="#">Контакты</a>
+        </li>
+    </ul>
+</div>
