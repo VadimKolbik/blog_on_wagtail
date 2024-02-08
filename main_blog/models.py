@@ -2,10 +2,30 @@ from django.db import models
 
 # Create your models here.
 from wagtail.models import Page, Orderable
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.search import index
 from modelcluster.fields import ParentalKey
+from wagtail.blocks import StructBlock, CharBlock, RichTextBlock
+from wagtail.images.blocks import ImageChooserBlock
+
+
+class CardBlock(StructBlock):
+    image = ImageChooserBlock(required=False)
+    title = models.CharField(max_length=255)
+    text = RichTextField()
+
+    class Meta:
+        template = 'main_blog/blocks/card_block.html'
+
+class MainPage(Page):
+
+    body = StreamField([
+        ('card_block', CardBlock()),
+
+    ], use_json_field=True)
+    
+    pass
 
 
 class BlogIndexPage(Page):
