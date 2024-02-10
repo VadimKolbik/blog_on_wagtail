@@ -6,26 +6,62 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.search import index
 from modelcluster.fields import ParentalKey
-from wagtail.blocks import StructBlock, CharBlock, RichTextBlock
+from wagtail.blocks import StructBlock, CharBlock, RichTextBlock, StreamBlock
 from wagtail.images.blocks import ImageChooserBlock
 
 
 class CardBlock(StructBlock):
     image = ImageChooserBlock(required=False)
-    title = models.CharField(max_length=255)
-    text = RichTextField()
+    title = CharBlock(max_length=255)
+    text = RichTextBlock()
 
     class Meta:
         template = 'main_blog/blocks/card_block.html'
 
-class MainPage(Page):
+class CardBlockList(StreamBlock):
+    card = CardBlock()
 
+class SecondBlock(StructBlock):
+    image = ImageChooserBlock()
+    title = RichTextBlock(max_length=255)
+    text = RichTextBlock()
+
+    class Meta:
+        template = 'main_blog/blocks/second_section.html'
+
+class SecondBlockImgRight(StructBlock):
+    image = ImageChooserBlock()
+    title = RichTextBlock(max_length=255)
+    text = RichTextBlock()
+
+    class Meta:
+        template = 'main_blog/blocks/second_section_img_right.html'
+
+class SecondBlockList(StreamBlock):
+    section_left = SecondBlock()
+    section_right = SecondBlockImgRight()
+
+
+class AboutMeBlock(StructBlock):
+    text = RichTextBlock()
+    image = ImageChooserBlock()
+
+    class Meta:
+        template = 'main_blog/blocks/about_me.html'
+
+
+class MainHomePage(Page):
+    
     body = StreamField([
-        ('card_block', CardBlock()),
-
+        ('textblock', RichTextBlock(required=False)),
+        ('card_block_list', CardBlockList()),
+        ('second_block_list', SecondBlockList()),
+        ('about_me', AboutMeBlock()),
     ], use_json_field=True)
     
-    pass
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
 
 
 class BlogIndexPage(Page):
@@ -74,8 +110,3 @@ class BlogPageGalleryImage(Orderable):
         FieldPanel('image'),
         FieldPanel('caption')
     ]
-
-class MainPage(Page):
-    
-    
-    pass

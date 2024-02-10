@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+{% for block in page.body %}
+{% if block.block_type == 'card_block_list' %}
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    {% for card in block.value %}
+    {{ card }}
+    {% endfor %}
+</div>
+{% elif block.block_type == 'textblock' %}
+<span style="text-align: center; margin: 20px;">{{ block }}</span>
+{% else %}
+{{ block }}
+{% endif %}
+{% endfor %}
+
+
+{% endblock content %}
