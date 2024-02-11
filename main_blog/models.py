@@ -6,8 +6,9 @@ from wagtail.fields import RichTextField, StreamField
 from wagtail.admin.panels import FieldPanel, InlinePanel
 from wagtail.search import index
 from modelcluster.fields import ParentalKey
-from wagtail.blocks import StructBlock, CharBlock, RichTextBlock, StreamBlock
+from wagtail.blocks import StructBlock, CharBlock, RichTextBlock, StreamBlock, ListBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.embeds.blocks import EmbedBlock
 
 
 class CardBlock(StructBlock):
@@ -57,6 +58,8 @@ class MainHomePage(Page):
         ('card_block_list', CardBlockList()),
         ('second_block_list', SecondBlockList()),
         ('about_me', AboutMeBlock()),
+        ('gallery', ListBlock(ImageChooserBlock())),
+        ('videos', ListBlock(EmbedBlock()))
     ], use_json_field=True)
     
     content_panels = Page.content_panels + [

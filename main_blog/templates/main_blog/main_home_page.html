@@ -14,6 +14,15 @@
 </div>
 {% elif block.block_type == 'textblock' %}
 <span style="text-align: center; margin: 20px;">{{ block }}</span>
+{% elif block.block_type == 'gallery' %}
+<div style="margin: auto; padding: auto;">
+    {% for img in block.value %}
+    <div style="display: contents;">
+        {% image img width-400 height-220 as photo %}
+        <img src="{{photo.url}}" alt="" width="350" height="220" style="margin: 10px;">
+    </div>
+    {% endfor %}
+</div>
 {% else %}
 {{ block }}
 {% endif %}
