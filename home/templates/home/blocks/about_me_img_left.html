@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+
+<div class="card border-none mb-3" style="border: 0;">
+    <div class="row g-0">
+        <div class="col-md-2" style="display: contents;">
+            {% image value.image fill-320x500-c100 as photo %}
+            <img src="{{ photo.url }}" alt="Image" style="border-radius: 20px;">
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+                <p class="card-text">{{ value.text }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+

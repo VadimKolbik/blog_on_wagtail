@@ -1,67 +1,69 @@
-{% load static %}
-{% load wagtailcore_tags custom_tags wagtailimages_tags %}
-<!DOCTYPE html>
-<html lang="ru">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    {# Подключение Boostrap #}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    {# Подключение своих стилей #}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
+{% load wagtailcore_tags wagtailimages_tags custom_tags %}
 
-<body>
-    {% header_tag %}
-    <div style="display: flex;">
-        <div>
-            <h5>Чтобы записаться на консультацию, введите свои данные.</h5>
-            <p>На Вашу почту придут дальнейшие инструкции</p>
-            <form>
-                <div class="mb-3">
-                    <label for="InputEmail" class="form-label">Ваше имя (обязательно)</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
-                </div>
-                <div class="mb-3">
-                    <label for="InputTelegram" class="form-label">Ваш ник в телеграмме через @
-                        (обязательно)</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
-                </div>
-                <div class="mb-3">
-                    <label for="InputEmail" class="form-label">Ваш e-mail (обязательно)</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Ваш телефон через +375 (обязательно)</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Комментарий</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Записаться на консультацию</button>
-            </form>
-        </div>
-        <div>
-            фото туттттт
-        </div>
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+{% for block in page.body %}
+{% if block.block_type == 'card_block_list' %}
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    {% for card in block.value %}
+    {{ card }}
+    {% endfor %}
+</div>
+{% elif block.block_type == 'textblock' %}
+<span style="text-align: center; margin: 20px;">{{ block }}</span>
+{% elif block.block_type == 'gallery' %}
+<div style="margin: auto; padding: auto;">
+    {% for img in block.value %}
+    <div style="display: contents;">
+        {% image img width-400 height-220 as photo %}
+        <img src="{{photo.url}}" alt="" data-enlargeable width="350" height="220" style="margin: 10px; cursor: zoom-in">
     </div>
-    {% footer_tag %}
-    <!-- <div>
-        <img src="static/images/footer/VK-Logo-2016.png" alt="image" height="40">
-        <img src="static/images/footer/tg.png" alt="image" height="40">
-    </div> -->
+    {% endfor %}
+</div>
+{% else %}
+{{ block }}
+{% endif %}
+{% endfor %}
+<div style="display: flex;">
+    <div>
+        <h5>Чтобы записаться на консультацию, введите свои данные.</h5>
+        <p>На Вашу почту придут дальнейшие инструкции</p>
+        <form>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">Ваше имя (обязательно)</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
+            </div>
+            <div class="mb-3">
+                <label for="InputTelegram" class="form-label">Ваш ник в телеграмме через @
+                    (обязательно)</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">Ваш e-mail (обязательно)</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Ваш телефон через +375 (обязательно)</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <!-- <div id="emailHelp" class="form-text">Мы никогда никому не передадим вашу электронную почту.</div> -->
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Комментарий</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Записаться на консультацию</button>
+        </form>
+    </div>
+    <div>
+        фото туттттт
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-</body>
-
-</html>
+{% endblock content %}

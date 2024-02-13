@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags custom_tags %}
 
 {% block body_class %}template-blogindexpage{% endblock %}
 
@@ -19,7 +19,7 @@
     {% for img in block.value %}
     <div style="display: contents;">
         {% image img width-400 height-220 as photo %}
-        <img src="{{photo.url}}" alt="" width="350" height="220" style="margin: 10px;">
+        <img src="{{photo.url}}" alt="" data-enlargeable width="350" height="220" style="margin: 10px; cursor: zoom-in">
     </div>
     {% endfor %}
 </div>
@@ -28,5 +28,6 @@
 {% endif %}
 {% endfor %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 {% endblock content %}

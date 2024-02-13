@@ -9,8 +9,8 @@
             </div>
         </div>
         <div class="col-md-4" style="display: contents;">
-            {% image value.image width-200 as photo %}
-            <img src="{{ photo.url }}" alt="Image" width="200" height="200" style="border-radius: 1000px;">
+            {% image value.image fill-200x200-c100 as photo %}
+            <img src="{{ photo.url }}" alt="Image" height='200' style="border-radius: 1000px; align-self: center;">
         </div>
     </div>
 </div>

@@ -10,45 +10,7 @@ from wagtail.blocks import StructBlock, CharBlock, RichTextBlock, StreamBlock, L
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 
-
-class CardBlock(StructBlock):
-    image = ImageChooserBlock(required=False)
-    title = CharBlock(max_length=255)
-    text = RichTextBlock()
-
-    class Meta:
-        template = 'main_blog/blocks/card_block.html'
-
-class CardBlockList(StreamBlock):
-    card = CardBlock()
-
-class SecondBlock(StructBlock):
-    image = ImageChooserBlock()
-    title = RichTextBlock(max_length=255)
-    text = RichTextBlock()
-
-    class Meta:
-        template = 'main_blog/blocks/second_section.html'
-
-class SecondBlockImgRight(StructBlock):
-    image = ImageChooserBlock()
-    title = RichTextBlock(max_length=255)
-    text = RichTextBlock()
-
-    class Meta:
-        template = 'main_blog/blocks/second_section_img_right.html'
-
-class SecondBlockList(StreamBlock):
-    section_left = SecondBlock()
-    section_right = SecondBlockImgRight()
-
-
-class AboutMeBlock(StructBlock):
-    text = RichTextBlock()
-    image = ImageChooserBlock()
-
-    class Meta:
-        template = 'main_blog/blocks/about_me.html'
+from home.custom_blocks import CardBlockList, SecondBlockList, AboutMeBlock
 
 
 class MainHomePage(Page):

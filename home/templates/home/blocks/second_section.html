@@ -3,8 +3,8 @@
 <div class="card border-none mb-3" style="border: 0; padding-left: 150px; padding-right: 150px;">
     <div class="row g-0">
         <div class="col-md-4" style="display: contents;">
-            {% image value.image width-200 as photo %}
-            <img src="{{ photo.url }}" alt="Image" width="200" height="200" style="border-radius: 1000px;">
+            {% image value.image fill-200x200-c100 as photo %}
+            <img src="{{ photo.url }}" alt="Image" height='200' style="border-radius: 1000px; align-self: center;">
         </div>
         <div class="col-md-8">
             <div class="card-body">

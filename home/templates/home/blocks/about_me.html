@@ -8,8 +8,8 @@
             </div>
         </div>
         <div class="col-md-2" style="display: contents;">
-            {% image value.image max-400x700 as photo %}
-            <img src="{{ photo.url }}" alt="Image" width="320" height="500" style="border-radius: 20px;">
+            {% image value.image fill-320x500-c100 as photo %}
+            <img src="{{ photo.url }}" alt="Image" style="border-radius: 20px;">
         </div>
     </div>
 </div>
